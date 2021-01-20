@@ -29,6 +29,14 @@ block content
         else
             p Não há processos filhos
 
+    if(classe.nivel=="3")
+        h3 Termos de Indices
+        ul 
+            each f in classe.termosInd
+                li 
+                    a(href="/indices") #{f.termo}
+
+
     p
     a(href='/' + "classes")
             span Voltar as classes
