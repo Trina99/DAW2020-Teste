@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h2 Classes de Nível 1
+
+    ul
+
+    for c in classe
+        li 
+            a(href='/classes/' + c.codigo) #{c.codigo}
+            |  - #{c.titulo}
+
+    a(href=('/'))
+        span Voltar home

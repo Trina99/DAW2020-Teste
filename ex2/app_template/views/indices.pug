@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    h2 Termos de Índices
+
+    table.w3-table.w3-striped.w3-border
+    - var i = 0;
+    each n in indice
+        if i == 0
+            - i = 1;
+            tr
+                th Termo
+                th IdClasse
+                th Título
+        tr
+            td #{n.termo}
+            td 
+                a(href='/classes/'+c.idClasse) #{n.idClasse}
+            td
+                a(href='/classes/'+c.idClasse) #{n.tituloClasse}
+    else
+        p
+            i Não há processos descendentes
+
+    p
+    a(href='/' + "classes")
+            span Voltar as classes
+    | - 
+    a(href=('/'))
+        span Voltar home

@@ -1,27 +1,54 @@
 const axios = require('axios');
 
-API_TOKEN = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExMTExMjIyMyIsImxldmVsIjoyLCJlbnRpZGFkZSI6ImVudF9BM0VTIiwiZW1haWwiOiJwcmkyMDIwQHRlc3RlLnVtaW5oby5wdCIsImlhdCI6MTYxMTA2NzkzMywiZXhwIjoxNjExMDk2NzMzfQ.h5IONrQ8e7n35x9S821tlfTmOrRCdOl17dlBz9Dvpq3GQW8aucJPE-0dQBSztfzInFLRZPoGNrrQASFldvGw5YACqV_Cvum7EBgUn_kv3jN858t2qexFU0e0XMRg4aher_on_0lgVXlo3teUkz5wXQMjr0ryyN_r2xCOdfDcxYzQQ9bUzqPpWUE2Z6MLzT_xdpSMd98XH_7jN8WjlFz2U7Vp-_vIC_LoStaNzZ5G_BcVv39yntGklmxWCx38Eje2rq2GbyKL85osjSLBMgre4mw0XK3mdQdgcu4-7el466iNdUHXj5JSD6Tp7XL-hB3cx1Gsv7gYdekBjPeKQA7O1Q'
-API_URL = 'http://clav-test.di.uminho.pt/v2'
+API_TOKEN = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDgxMGM2NDFhYmQ1NDU0MDZkZmRkMSIsImxldmVsIjoyLCJlbnRpZGFkZSI6ImVudF9BM0VTIiwiZW1haWwiOiJkYXcyMDIwQHRlc3RlLnVtaW5oby5wdCIsImlhdCI6MTYxMTE1MjczNCwiZXhwIjoxNjExMTgxNTM0fQ.Yz6NCx_o5-nF8pdHUzgBYRHPLiXDHG-P4YlAad5fcvefB6RyBF6-CDEnUtOYeFgwV_ACiFLPSCTigpIa_7gEq-TXl5tx4DFsRpHY2o6k4xO7AYj8j1IesewpDcSbTfaVKDMGI-q9tAxAmOX9VW5ikpi17CKZde74yRPXfGWvo9aKofA51dWfdp8HSM8JY-j-lYABtfW1OhDLADFJLJXtuaDDxiaVX4d7j97xXac30S0QGyEgdKGSpJ5UN-RU7qP34nt89iNVrCMgeSCkKn3Iq2NUMOqmSyWZb6wA19yuLb-qlEIK90hjEUiubqqVIBBr77vabuKVClHR8KgtH7jTEA'
+API_URL = 'http://clav-api.di.uminho.pt/v2'
 
 
 
 
+axios.get(`${API_URL}/classes/c900/descendencia?nivel=3&token=${API_TOKEN}`)
+.then((api_res) => {
+    // handle success''
+    console.log('nº processos nivel 3 pertencentes à descendência da classe 900:',api_res.data.length);
+    console.log('processos:',api_res.data);
+})
+.catch((err) => {
+    // handle error
+    console.log(err);
+});
 
 
+axios.get(`${API_URL}/entidades?token=${API_TOKEN}`)
+.then((api_res) => {
+    // handle success''
+    console.log('nº entidades catalogadas:',api_res.data.length);
+})
+.catch((err) => {
+    // handle error
+    console.log(err);
+});
 
 
+axios.get(`${API_URL}/classes/c900.10/descendencia?nivel=3&token=${API_TOKEN}`)
+.then((api_res) => {
+    // handle success''
+    console.log('nº processos nivel 3 pertencentes à descendência da classe 900.10:',api_res.data.length);
+})
+.catch((err) => {
+    // handle error
+    console.log(err);
+});
 
+axios.get(`${API_URL}/classes/c900.10.505/procRel?nivel=3&token=${API_TOKEN}`)
+.then((api_res) => {
+    // handle success''
+    console.log('nº processos nivel 3 relacionados com a classe 900.10.505:',api_res.data.length);
+})
+.catch((err) => {
+    // handle error
+    console.log(err);
+});
 
-// axios.get(`${API_URL}/classes/c750/descendencia?nivel=3&token=${API_TOKEN}`)
-// .then((api_res) => {
-//     // handle success''
-//     console.log('nº processos nivel 3 pertencentes à descendência da classe 750:',api_res.data.length);
-//     console.log('processos:',api_res.data);
-// })
-// .catch((err) => {
-//     // handle error
-//     console.log(err);
-// });
 
 
 // axios.get(`${API_URL}/classes?nivel=4&token=${API_TOKEN}`)

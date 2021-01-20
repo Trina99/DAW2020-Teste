@@ -15,10 +15,16 @@
     </team>
 
     <abstract>
-        persistência de dados,
-        do setup de bases de dados,
-        respostas textuais pedidas, 
-        instruções de como executar as aplicações desenvolvidas
+        - persistência de dados: antes de mais foi modificado o ficheiro JSONN fornecido, para este poder ser utilizado corretamento. Para isso, primeiro foi utilizado regex para apanhar e subtituir todos os parâmetros e coloca-los entre aspas, por exemplo, foi substituido ref por "ref". De seguida, faltavam algumas vírgulas, bem como aspas ao longo do ficheiro, e como não eram muitos os erros, foram alterados manualmente.
+        Por último para adicionar os campos pedidos foi utilizado o ficheiro convert-id.py. Podendo este ser executando através do comando: ./convert-id.py
+        - setup de bases de dados: para importar o ficheiro JSON para o MongoDB foi executado o seguinte comando: mongoimport -d DAW2020 -c batisados batismo_modified.json --jsonArray
+
+        respostas textuais pedidas, ex2 Warmup:
+        podem ser encontradas executando o comando node warmup.js
+
+        
+        instruções de como executar as aplicações desenvolvidas: para executar tanto o ex1 como o ex2, apenas é necessário correr
+        node ./bim/www ou nodemon ./bin/www, em cada uma das páginas correspondentes
         
     </abstract>
 

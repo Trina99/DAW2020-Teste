@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var Casamento = require('../controllers/casamento')
+var Batismo = require('../controllers/batismo')
 
 
 /* GET home page. */
@@ -9,50 +9,74 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/api/batismos/batisado', function(req, res) {
+  // Data retrieve
+  Batismo.batisados()
+    .then(data => {
+      var resultado = []
+      data.forEach(b => {
+        aux = b.title.split(':')
+        nome = aux[1].split('.')
+     
+        resultado.push(nome[0])
+      });
+      
+      res.json(resultado.sort())
+    })
+    .catch(err => res.json({error: err}))
+  ;
+});
 
-// router.get('/api/casamentos', function(req, res) {
-//   if(req.query.nome){
-//     Casamento.getNome(req.query.nome)
-//     .then(data => res.json(data))
-//       .catch(err => res.json({error: err}));
-//   }
-//   if(req.query.ano){
-//     Casamento.getAno(req.query.ano)
-//     .then(data => res.json(data))
-//       .catch(err => res.json({error: err}));
-//   }
-//   if(req.query.byAno){
-//     Casamento.groupAno()
-//     .then(data => res.json(data))
-//       .catch(err => res.json({error: err}));
-//   }
-//   else{
+
+router.get('/api/batismos/progenitores', function(req, res) {
+  // Data retrieve
+  Batismo.progenitores()
+    .then(data => res.json(data))
+    .catch(err => res.json({error: err}))
+  ;
+});
+
+router.get('/api/batismos/stats', function(req, res) {
+  // Data retrieve
+  Batismo.stats()
+    .then(data => res.json(data))
+    .catch(err => res.json({error: err}))
+  ;
+});
+
+router.get('/api/batismos/:id', function(req, res) {
+  // Data retrieve
+  Batismo.lookUp(req.params.id)
+    .then(data => res.json(data))
+    .catch(err => res.json({error: err}))
+  ;
+});
+
+router.get('/api/batismos', function(req, res) {
+
+  if(req.query.ano){
+    Batismo.getAno(req.query.ano)
+    .then(data => res.json(data))
+      .catch(err => res.json({error: err}));
+  }
+  else{
+  // Data retrieve
+      Batismo.list()
+      .then(data => res.json(data))
+      .catch(err => res.json({error: err}));
+  }
+});
+
+// router.get('/api/Batismos/noivos', function(req, res) {
 //   // Data retrieve
-//       Casamento.list()
-//       .then(data => res.json(data))
-//       .catch(err => res.json({error: err}));
-//   }
-// });
-
-// router.get('/api/casamentos/:id', function(req, res) {
-//   // Data retrieve
-//   Casamento.lookUp(req.params.id)
-//     .then(data => res.json(data))
-//     .catch(err => res.json({error: err}))
-//   ;
-// });
-
-
-// router.get('/api/casamentos/noivos', function(req, res) {
-//   // Data retrieve
-//   Casamento.lookUp(req.params.id)
-//     .then(casamento => {
+//   Batismo.lookUp(req.params.id)
+//     .then(Batismo => {
 //       var res = []
-//       casamentos.forEach(c => {
+//       Batismos.forEach(c => {
 //         aux = c.title.split(':')
 //         noivos = aux[1].split(/c.c./)
-//         noivo = {nome: noivos[0], casamento: c.id}
-//         noiva = {nome: noivos[1], casamento: c.id}
+//         noivo = {nome: noivos[0], Batismo: c.id}
+//         noiva = {nome: noivos[1], Batismo: c.id}
         
 //         res.push(noivo)
 //         res.push(noiva)

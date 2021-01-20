@@ -1,47 +1,72 @@
 // Student controller
 
-var Casamento = require('../models/casamento')
+var Batismo = require('../models/batismo')
 
-// Devolve lista dos casamentos
-// module.exports.list = () => {
-//     return Casamento
-//         .find({},{date: 1, title:1, _id:1, href:1})
-//         .exec()
-// }
+// Devolve lista dos Batismos
+module.exports.list = () => {
+    return Batismo
+        .find({},{date: 1, title:1, _id:1, ref:1})
+        .exec()
+}
 
 
 // module.exports.getNome = (nome) => {
-//     return Casamento
+//     return Batismo
 //         .find({"title" : {$regex : ".*" + nome + ".*"}})
 //         .exec();
 // }
 
-// module.exports.lookUp = id => {
-//     return Casamento
-//         .findOne({'_id': id})
-//         .exec()
-// }
+module.exports.lookUp = id => {
+    return Batismo
+        .findOne({'_id': id})
+        .exec()
+}
 
-// module.exports.getAno = (ano) => {
-//     return Casamento
-//         .find({"date" : {$regex : ".*" + ano + ".*"}})
-//         .exec();
-// }
+module.exports.batisados = () => {
+    return Batismo
+        .find({},{title: 1})
+        .exec()
+}
+
+module.exports.progenitores = id => {
+    return Batismo
+        .find({},{_id: 1, pai: 1, mae: 1})
+        .exec()
+}
+
+module.exports.stats = () => {
+        return Batismo
+        .aggregate([
+        {
+            "$group" : {
+                "_id" : {date: { $substr: [ "$date", 0, 4 ] }},
+                count: { $sum: 1 }
+            }
+        }
+    ])
+  
+    }
+
+module.exports.getAno = (ano) => {
+    return Batismo
+        .find({"date" : {$regex : ".*" + ano + ".*"}},{_id:0, title:1})
+        .exec();
+}
 
 // module.exports.listaNoivos = () => {
-//     return Casamento
+//     return Batismo
 //         .find({'_id':1, title:1})
 //         .exec()
 // }
 
 
 // module.exports.groupAno = () => {
-//     return Casamento
+//     return Batismo
 //             .aggregate([
 //             {
 //                 "$group" : {
 //                     "_id" : {date: "$date"},
-//                     casamentos: {$push: {title: "$title", id: "$ref"}}
+//                     Batismos: {$push: {title: "$title", id: "$ref"}}
 //                 }
 //             }
 //       ])
@@ -90,3 +115,14 @@ var Casamento = require('../models/casamento')
 //         }})
 //         .exec()
 // }
+
+                // Batismos: {$push: {title: "$title", id: "$ref"}}
+
+                // count: { $sum: 1 }
+                // nrAtores: {
+                    //             $cond: {
+                    //                 if: { $isArray: "$cast"},
+                    //                 then: { $size: "$cast"},
+                    //                 else: 0
+                    //             }
+                    //         }})
