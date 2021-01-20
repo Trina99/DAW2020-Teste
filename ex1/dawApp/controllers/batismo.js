@@ -10,12 +10,6 @@ module.exports.list = () => {
 }
 
 
-// module.exports.getNome = (nome) => {
-//     return Batismo
-//         .find({"title" : {$regex : ".*" + nome + ".*"}})
-//         .exec();
-// }
-
 module.exports.lookUp = id => {
     return Batismo
         .findOne({'_id': id})
@@ -52,77 +46,3 @@ module.exports.getAno = (ano) => {
         .find({"date" : {$regex : ".*" + ano + ".*"}},{_id:0, title:1})
         .exec();
 }
-
-// module.exports.listaNoivos = () => {
-//     return Batismo
-//         .find({'_id':1, title:1})
-//         .exec()
-// }
-
-
-// module.exports.groupAno = () => {
-//     return Batismo
-//             .aggregate([
-//             {
-//                 "$group" : {
-//                     "_id" : {date: "$date"},
-//                     Batismos: {$push: {title: "$title", id: "$ref"}}
-//                 }
-//             }
-//       ])
-// }
-
-// module.exports.groupAtor = () => {
-//     return Filme
-//     .aggregate([{ $unwind : "$cast" },{"$group":{"_id" : "$cast",filmes:{$push:{title: "$title",id: "$id"}}}}])
-
-// }
-
-// module.exports.groupGenero = () => {
-//     return Filme
-//     .aggregate([{ $unwind : "$genres" },{"$group":{"_id" : "$genres",filmes:{$push:{title: "$title",id: "$id"}}}}])
-
-// }
-
-// module.exports.groupAno = () => {
-//         return Filme
-//                 .aggregate([
-//                 {
-//                     "$group" : {
-//                         "_id": {year: "$year"},
-//                         filmes: {$push: {title: "$title", id: "$id"}}
-//                 }
-//             }
-//         ])
-// }
-
-// module.exports.listaAtores = () => {
-//     return Filme
-//         .distinct("cast")
-//         .sort()
-//         .exec()
-// }
-
-// module.exports.nrAtores = () => {
-//     return Filme
-//         .find({},{id:1, _id:0, title:1,
-//             nrAtores: {
-//             $cond: {
-//                 if: { $isArray: "$cast"},
-//                 then: { $size: "$cast"},
-//                 else: 0
-//             }
-//         }})
-//         .exec()
-// }
-
-                // Batismos: {$push: {title: "$title", id: "$ref"}}
-
-                // count: { $sum: 1 }
-                // nrAtores: {
-                    //             $cond: {
-                    //                 if: { $isArray: "$cast"},
-                    //                 then: { $size: "$cast"},
-                    //                 else: 0
-                    //             }
-                    //         }})

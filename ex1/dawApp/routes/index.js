@@ -67,30 +67,4 @@ router.get('/api/batismos', function(req, res) {
   }
 });
 
-// router.get('/api/Batismos/noivos', function(req, res) {
-//   // Data retrieve
-//   Batismo.lookUp(req.params.id)
-//     .then(Batismo => {
-//       var res = []
-//       Batismos.forEach(c => {
-//         aux = c.title.split(':')
-//         noivos = aux[1].split(/c.c./)
-//         noivo = {nome: noivos[0], Batismo: c.id}
-//         noiva = {nome: noivos[1], Batismo: c.id}
-        
-//         res.push(noivo)
-//         res.push(noiva)
-//       });
-//       SpeechRecognitionResult.sort((a,b)=>{
-//         if(a.nome < b.nome){return -1;}
-//         if(a.nome > b.nome){return 1;}
-//         return 0;
-//       })
-//       res.json(result)
-//     })
-//     .catch(err => res.json({error: err}))
-//   ;
-// });
-
-
 module.exports = router;
