@@ -10,7 +10,7 @@ block content
         li Id: #{classe.id}
 
     h3 Filhos:
-        table.w3-table.w3-striped.w3-border
+    table.w3-table.w3-striped.w3-border
         - var i = 0;
         each c in classe.filhos
             if i == 0
@@ -27,8 +27,7 @@ block content
                     a(href='/classes/'+c.codigo) #{c.codigo}
                 td #{c.titulo}
         else
-            p
-                i Não há processos descendentes
+            p Não há processos filhos
 
     p
     a(href='/' + "classes")
