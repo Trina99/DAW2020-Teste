@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    h2 Classe de Nível #{classe.nivel}
+    ul
+        li Codigo: #{classe.codigo}
+        li Titulo: #{classe.titulo}
+        li Descricao: #{classe.descricao}
+        li Status: #{classe.status}
+        li Id: #{classe.id}
+
+    h3 Entidades por que é composta:
+    table.w3-table.w3-striped.w3-border
+    - var i = 0;
+    each e in entidade
+      if i == 0
+        - i = 1;
+        tr
+          th ID
+          th Status
+          th Codigo
+          th Titulo
+      tr
+        td= val.id
+        td= val.status
+        td
+          a(href=`/class/c${val.codigo}?token=${token}`)= val.codigo
+        td= val.titulo
+    else
+        p
+          i Não há processos descendentes
+
+
+    if (classe.filhos.length > 0)
+        h3 Filhos:
+        ul
+            for f in classe.filhos
+                li 
+                    a(href='/' + "c" + f.codigo)
+                        span= f.codigo
+    if (classe.nivel == 2)
+        p
+        a(href='/' + "c" + classe.pai.codigo)
+            span Voltar ao pai
+        | - 
+        a(href=('/'))
+            span Voltar home
+    
+    else 
+        a(href=('/'))
+            span Voltar home

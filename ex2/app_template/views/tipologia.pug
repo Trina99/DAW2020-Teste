@@ -1,0 +1,73 @@
+extends layout
+
+block content
+    h2 Tipologia #{tipologia.sigla}
+    ul
+        h5
+            li Estado: #{tipologia.estado}
+            li Designação: #{tipologia.designacao}
+
+    h3 Entidades participantes:
+    if (entidade.length > 0)
+        table.w3-table.w3-striped.w3-border
+            tr
+                th sigla
+                th designação
+            each e in entidade                
+                tr
+                    td 
+                        a(href='/entidade/' + e.sigla)
+                            span #{e.sigla}
+                    td #{e.designacao}
+    else
+        p
+          i Não há entidades participantes
+
+    h3 Dona dos processos:
+    if (dono.length > 0)
+        table.w3-table.w3-striped.w3-border
+            tr
+                th codigo
+                th titulo
+            each d in dono                
+                tr
+                    td #{d.codigo}
+                    td #{d.titulo}
+    else
+        p
+          i Não há processos em que esta tipologia é dona
+ 
+    h3 Participante nos processos:
+    if (participante.length > 0)
+        table.w3-table.w3-striped.w3-border
+            tr
+                th codigo
+                th tipoPar
+                th titulo
+            each p in participante                
+                tr
+                    td #{p.codigo}
+                    td #{p.tipoPar}
+                    td #{p.titulo}
+    else
+        p
+          i Não há processos em que esta tipologia é participante
+
+    - var path = ""
+    p
+    a(href=path)
+            span Voltar atrás
+    | - 
+    a(href=('/'))
+            span Voltar home
+    //- if (classe.nivel == 2)
+    //-     p
+    //-     a(href='/' + "c" + classe.pai.codigo)
+    //-         span Voltar ao pai
+    //-     | - 
+    //-     a(href=('/'))
+    //-         span Voltar home
+    
+    //- else 
+    //-     a(href=('/'))
+            span Voltar home
